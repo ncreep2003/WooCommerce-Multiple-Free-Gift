@@ -28,6 +28,8 @@ class WFG_Frontend
     /** @var boolean Denotes if there is a valid criteria */
     protected $_wfg_criteria;
 
+	protected $_wfg_theme_fixed;
+
     /**
      * Constructor
      *
@@ -41,6 +43,7 @@ class WFG_Frontend
 
         $this->_wfg_enabled       = WFG_Settings_Helper::get( $this->_wfg_type . '_enabled', true, 'global_options' );
         $this->_wfg_criteria      = false;
+        $this->_wfg_theme_fixed   = true;
         $this->_wfg_gifts_allowed = 1;
         $this->_wfg_products      = [];
 
@@ -64,10 +67,16 @@ class WFG_Frontend
 
         /* Display gifts in frontend */
         add_action( 'wp_head', [ $this, 'validate_gifts' ] );
-        add_action( 'wp_head', [ $this, 'display_gifts' ] );
+	    if($this->_wfg_theme_fixed == true){
+		    add_action( 'woocommerce_before_cart_table', [ $this, 'display_gifts_flxed' ], 10, 2 );
+	    }else {
+		    add_action( 'wp_head', [ $this, 'display_gifts' ] );
+	    }
+
 
         /* Do not allow user to update quantity of gift items */
         add_filter( 'woocommerce_is_sold_individually', [ $this, 'wfg_disallow_qty_update' ], 10, 2 );
+
 
         /* Remove gifts when main item is removed */
         add_action( 'woocommerce_cart_item_removed', [ $this, 'wfg_item_removed' ], 10, 2 );
@@ -430,6 +439,36 @@ class WFG_Frontend
         }
     }
 
+
+
+
+
+    public function display_gifts_flxed()
+    {
+        if ( ! is_cart() ) {
+            return;
+        }
+
+        if ( $this->__gift_item_in_cart() ) {
+            return;
+        }
+
+        self::__get_actual_settings();
+
+        //check gift criteria
+        if ( ! $this->_check_global_gift_criteria() ) {
+            return;
+        }
+
+
+
+        $items = WFG_Product_Helper::get_cart_products();
+
+        if ( $items['count'] >= $this->_minimum_qty ) {
+            $this->_show_gifts();
+        }
+    }
+
     /**
      * Display gifts.
      *
@@ -463,7 +502,35 @@ class WFG_Frontend
         echo '/* ]]> */';
         echo '</script>';
 
-        include( PLUGIN_DIR . 'templates/default/template-default.php' );
+        include( PLUGIN_DIR . 'templates/default/template-default-float.php' );
+    }
+
+    protected function _show_gifts_fixed()
+    {
+        if ( ! $this->_wfg_enabled ) {
+            return;
+        }
+
+        if ( empty( $this->_wfg_products ) ) {
+            return;
+        }
+
+        $wfg_free_products = [];
+        foreach ( $this->_wfg_products as $product ) {
+            $wfg_free_products[] = WFG_Product_Helper::get_product_details( $product );
+        }
+
+        $localize = [
+            'gifts_allowed' => ( false !== $this->_wfg_gifts_allowed ) ? $this->_wfg_gifts_allowed : 1,
+        ];
+
+        echo '<script>';
+        echo '/* ' . '<![CDATA[ */';
+        echo 'var WFG_SPECIFIC =' . json_encode( $localize );
+        echo '/* ]]> */';
+        echo '</script>';
+
+        include( PLUGIN_DIR . 'templates/default/template-default-float.php' );
     }
 
     /**
