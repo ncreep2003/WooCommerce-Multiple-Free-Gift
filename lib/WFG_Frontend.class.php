@@ -68,7 +68,7 @@ class WFG_Frontend
         /* Display gifts in frontend */
         add_action( 'wp_head', [ $this, 'validate_gifts' ] );
 	    if($this->_wfg_theme_fixed == true){
-		    add_action( 'woocommerce_before_cart_table', [ $this, 'display_gifts_flxed' ], 10, 2 );
+		    add_action( 'woocommerce_before_cart_table', [ $this, 'display_gifts' ], 10, 2 );
 	    }else {
 		    add_action( 'wp_head', [ $this, 'display_gifts' ] );
 	    }
@@ -443,31 +443,6 @@ class WFG_Frontend
 
 
 
-    public function display_gifts_flxed()
-    {
-        if ( ! is_cart() ) {
-            return;
-        }
-
-        if ( $this->__gift_item_in_cart() ) {
-            return;
-        }
-
-        self::__get_actual_settings();
-
-        //check gift criteria
-        if ( ! $this->_check_global_gift_criteria() ) {
-            return;
-        }
-
-
-
-        $items = WFG_Product_Helper::get_cart_products();
-
-        if ( $items['count'] >= $this->_minimum_qty ) {
-            $this->_show_gifts();
-        }
-    }
 
     /**
      * Display gifts.
@@ -502,36 +477,17 @@ class WFG_Frontend
         echo '/* ]]> */';
         echo '</script>';
 
-        include( PLUGIN_DIR . 'templates/default/template-default-float.php' );
+
+	    if($this->_wfg_theme_fixed == true){
+		    include( PLUGIN_DIR . 'templates/default/template-default-fixed.php' );
+	    }else {
+		    include( PLUGIN_DIR . 'templates/default/template-default-float.php' );
+	    }
+
+
+
     }
 
-    protected function _show_gifts_fixed()
-    {
-        if ( ! $this->_wfg_enabled ) {
-            return;
-        }
-
-        if ( empty( $this->_wfg_products ) ) {
-            return;
-        }
-
-        $wfg_free_products = [];
-        foreach ( $this->_wfg_products as $product ) {
-            $wfg_free_products[] = WFG_Product_Helper::get_product_details( $product );
-        }
-
-        $localize = [
-            'gifts_allowed' => ( false !== $this->_wfg_gifts_allowed ) ? $this->_wfg_gifts_allowed : 1,
-        ];
-
-        echo '<script>';
-        echo '/* ' . '<![CDATA[ */';
-        echo 'var WFG_SPECIFIC =' . json_encode( $localize );
-        echo '/* ]]> */';
-        echo '</script>';
-
-        include( PLUGIN_DIR . 'templates/default/template-default-float.php' );
-    }
 
     /**
      * Check if global gift condition is satisfied.

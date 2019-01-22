@@ -6,9 +6,9 @@
  * Copyright (c) 2015, Ankit Pokhrel <info@ankitpokhrel.com.np, http://ankitpokhrel.com>
  */
 jQuery(document).ready(function ($) {
-  if($('.wfg-popup, .wfg-overlay').length) {
+  if($('.wfg-popup, .wfg-overlay, .wfg-fixed').length) {
     setTimeout(function () {
-      $('.wfg-popup, .wfg-overlay').fadeIn(1300);
+      $('.wfg-popup, .wfg-fixed, .wfg-overlay').fadeIn(1300);
     }, 700);
 
     $('.wfg-no-thanks').click(function (e) {
