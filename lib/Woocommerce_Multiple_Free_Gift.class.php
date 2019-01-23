@@ -68,6 +68,7 @@ class Woocommerce_Multiple_Free_Gift
 
         //enqueue scripts
         wp_enqueue_script( 'wfg-scripts', plugins_url( '/js/wfg-scripts.js', dirname( __FILE__ ) ), [ 'jquery' ] );
+	    wp_enqueue_script( 'wfg-slider', plugins_url( '/js/wfg-slider.min.js', dirname( __FILE__ ) ), [ 'jquery' ] );
     }
 
     /**

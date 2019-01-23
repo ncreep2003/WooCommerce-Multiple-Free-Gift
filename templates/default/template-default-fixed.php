@@ -16,10 +16,11 @@ if ( $overlay ):
 		?>
     </h2>
     <div class="wfg-gifts">
-        <form action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post">
+        <div action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post">
             <input type="hidden" name="action" value="wfg_add_gifts"/>
 			<?php
 			wp_nonce_field( 'wfg_add_free_gifts', '_wfg_nonce' );
+			echo ' <div class="siema">';
 			if ( ! empty( $wfg_free_products ) ):
 				foreach ( $wfg_free_products as $product ):
 					if ( empty( $product->detail ) ) {
@@ -35,10 +36,13 @@ if ( $overlay ):
                                 <img src="<?php echo $product->image ?>" style="width:150px; height:150px;" alt=""/>
                             </label>
 
-                            <h3><?php echo $product->detail->post_title ?></h3>
+                            <h3><?php echo $product->detail->post_title ?></h3><h3><?php echo $product->detail->post_excerpt ?></h3>
                         </div>
                     </div>
-				<?php endforeach; ?>
+				<?php endforeach;
+				echo "</div>";
+				?>
+
                 <div class="wfg-actions">
                     <button class="button wfg-button wfg-add-gifts">
 						<?php

@@ -49,6 +49,17 @@ jQuery(document).ready(function ($) {
   $('.wfg-fixed-notice-remove').click(function () {
     $(this).closest('.wfg-fixed-notice').fadeOut(1000);
   });
+
+
+  const mySiema = new Siema({
+    perPage: 3,
+  });
+  const prev = document.querySelector('.prev');
+  const next = document.querySelector('.next');
+
+  prev.addEventListener('click', () => mySiema.prev());
+  next.addEventListener('click', () => mySiema.next());
+
 });
 
 /* use as handler for resize*/
@@ -56,8 +67,8 @@ jQuery(window).resize(wfgAdjustLayout);
 /* call function in ready handler*/
 jQuery(document).ready(function () {
   wfgAdjustLayout();
-  /* Resize ma adjust garnay cod sabai yesma haalnay*/
-})
+  /* Resize ma adjust garnay code sabai yesma haalnay*/
+});
 
 function wfgAdjustLayout() {
   jQuery('.wfg-popup').css({
