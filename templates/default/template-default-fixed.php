@@ -69,3 +69,53 @@ if ( $overlay ):
         </form>
     </div>
 </div>
+
+
+    <div class="v-centered">
+        <div class="carousel">
+            <div class="roll">
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/1.jpg" alt="Project img 1">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/2.jpg" alt="Project img 2">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/3.jpg" alt="Project img 3">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/4.jpg" alt="Project img 4">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/5.jpg" alt="Project img 5">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/6.jpg" alt="Project img 6">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/7.jpg" alt="Project img 7">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/8.jpg" alt="Project img 8">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+                <div class="project">
+                    <img src="http://ibrahimjabbari.com/english/images/9.jpg" alt="Project img 9">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia in mi a rhoncus. Suspendisse maximus leo ac lorem interdum volutpat.</p>
+                </div>
+            </div>
+            <div class="sections">
+            </div>
+            <button class="navigation" id="nav-left"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+            <button class="navigation" id="nav-right"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+
+
